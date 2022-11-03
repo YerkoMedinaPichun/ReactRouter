@@ -1,6 +1,8 @@
 import React from "react";
 import {
   BrowserRouter as Router,
+  HashRouter,
+  Link,
   Redirect,
   Route,
   Switch,
@@ -20,8 +22,8 @@ import PrivateRoute from "./PrivateRoute";
 const ConceptosBasicos = () => {
   return (
     <div>
-      <h2>Conceptos Básicos </h2>
-      <Router>
+      <h2>Hash Router</h2>
+      <HashRouter>
         <MenuConceptos />
 
         <Switch>
@@ -44,7 +46,12 @@ const ConceptosBasicos = () => {
 
           <Route path="*" component={Error404} />
         </Switch>
-      </Router>
+      </HashRouter>
+      <hr />
+      <h2>Conceptos Básicos </h2>
+      {/* <Router>
+        <Switch></Switch>
+      </Router> */}
     </div>
   );
 };
