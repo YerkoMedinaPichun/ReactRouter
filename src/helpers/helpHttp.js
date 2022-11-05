@@ -1,6 +1,6 @@
 export const helpHttp = () => {
   const customFetch = (endpoint, options) => {
-    const defaultHeaders = {
+    const defaultHeader = {
       accept: "application/json",
     };
 
@@ -8,18 +8,19 @@ export const helpHttp = () => {
     options.signal = controller.signal;
     options.method = options.method || "GET";
     options.headers = options.headers
-      ? { ...defaultHeaders, ...options.headers }
-      : defaultHeaders;
+      ? { ...defaultHeader, ...options.headers }
+      : defaultHeader;
+
     options.body = JSON.stringify(options.body) || false;
     if (!options.body) delete options.body;
-    setTimeout(() => controller.abort(), 30000);
+    setTimeout(() => controller.abort(), 5000);
 
     return fetch(endpoint, options)
       .then((res) =>
         res.ok
           ? res.json()
           : Promise.reject({
-              error: true,
+              err: true,
               status: res.status || "00",
               statusText: res.statusText || "Ocurrió un error",
             })
